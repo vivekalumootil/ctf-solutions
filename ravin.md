@@ -5,7 +5,7 @@ This is crypto challenge #6 of LACTF 2023. Understanding this writeup requires a
 ## fastpow
 First we address what exactly the fastpow function does. It's name and code suggests that it returns $b^p \pmod{m}$. However, some simple experimentation reveals this is the not the case. For example, $\text{fastpow}(2, 5, 7)$ returns $2$, when it should return $4$. Note that $2^4 \equiv 2 \pmod{4}$, and $\text{fastpow}(2, 4, 7)$ does indeed return $2$. 
 
-This suggests that $\text{fastpow}$ returns $b^{p-1} \pmod {m}$ for odd $p$. It's easy to see why this case by analyzing the $\text{fastpow}$ code. It works off the fact that if $p = (x_{1}x_{2}\cdots x_{n})_2$, then $p \equiv b^{x_n} \cdot (b^2)^{x_{n-1}}  \cdots  (b^{2^n})^{x_1} \pmod {m}$.
+This suggests that $\text{fastpow}$ returns $b^{p-1} \pmod {m}$ for odd $p$. It's easy to see why this case by analyzing the $\text{fastpow}$ code. It works off the fact that if $p = (x_{1}x_{2}\cdots x_{n})\_2$, then $p \equiv b^{x_n} \cdot (b^2)^{x_{n-1}}  \cdots  (b^{2^n})^{x_1} \pmod {m}$.
 
 The fastpow code goes through each of the binary digits right to left and adds each corresponding value in the sum, except it always ignores the the rightmost digit. Thus, when $p$ is odd, the return value is $\equiv b^{p-1} \pmod{m}$.
 

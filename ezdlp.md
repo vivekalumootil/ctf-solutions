@@ -1,4 +1,4 @@
-# ezdlp
+# tjctf 2023: ezdlp
 
 ### We're trying to solve $8999^x \equiv s \pmod{p}$, for particularly large $s$ and $p$. The general ideas is to prime factorize $p$ as $p_1 \cdot p_2 \cdot p_3 \cdot \cdots \cdot p_k$, then solve each $8999^{x_i} \equiv (s\pmod{p_i}) \pmod {p_i}$ for each $i$ using a DLP solver algorithm like little step-big step. Once we find each $x_i$, we can find $x$ using CRT, since we know $x \equiv x_i \pmod{p_i-1}$.
 
